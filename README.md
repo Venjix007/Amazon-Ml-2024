@@ -1,7 +1,5 @@
 
 # Project Name : Label Decoder
-# Name Abhay Patel:8320389771
-       Aditya Vankani:+9313412617
 
 This project utilizes deep learning models and various libraries to perform tasks involving OCR, NLP, and image processing.
 Below are the installation instructions and dependencies required to run this project.
