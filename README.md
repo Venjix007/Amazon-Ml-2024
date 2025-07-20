@@ -1,39 +1,67 @@
+# Amazon ML Challenge 2024 – OCR + BART Text Prediction
 
-# Project Name : Label Decoder
+This project is part of the Amazon ML Challenge 2024, where the goal is to build a machine learning pipeline capable of extracting text from images and predicting corresponding entity values using deep learning models.
 
-This project utilizes deep learning models and various libraries to perform tasks involving OCR, NLP, and image processing.
-Below are the installation instructions and dependencies required to run this project.
+## 🔍 Project Overview
 
-## Installation
+The system performs **end-to-end OCR-driven text prediction** using:
 
-To get started, ensure you have Python installed (Python 3.8+ recommended). Then, follow these steps to install the required packages.
+- **PaddleOCR** for image text extraction.
+- **BERT** for contextual embedding generation.
+- **BART (Bidirectional and Auto-Regressive Transformer)** for sequence classification and entity prediction.
+- **BLEU Score and Accuracy** for evaluation.
 
-### Step 1: Clone the Repository (if applicable)
+---
 
-```bash
-git clone <repository_url>
-cd <repository_name>
-```
+## 📊 Key Components
 
-### Step 2: Install Dependencies
+### 1. **Image Text Extraction**
+- Images are processed using `OpenCV` and `PaddleOCR` to extract English text.
+- Extracted text is stored and used for downstream training.
 
-Use the following command to install all required libraries:
+### 2. **Text Embeddings with BERT**
+- The extracted text is tokenized and passed through `bert-base-uncased` to obtain dense vector embeddings.
+- These embeddings provide context-aware representations for classification.
 
-```bash
-pip install numpy pandas torch transformers nltk paddlepaddle paddleocr scikit-learn opencv-python tqdm requests
-```
+### 3. **Entity Classification with BART**
+- A BART model is fine-tuned using Hugging Face Transformers to classify and predict the target `entity_value` based on `combined_text`.
 
-### Step 3: Additional NLTK Resources
+### 4. **Evaluation**
+- **BLEU Score**: Used to evaluate the closeness of predicted sequences.
+- **Exact Match Accuracy**: Measures how many predictions exactly match the true values.
 
-The NLTK library requires additional resources for certain NLP tasks. Run the following in Python:
+---
 
-```python
-import nltk
-nltk.download('punkt')
-```
+## 🚀 Technologies & Libraries Used
 
-## Usage
+- Python  
+- PaddleOCR  
+- OpenCV  
+- Hugging Face Transformers (`BERT`, `BART`)  
+- PyTorch  
+- Pandas  
+- Numpy  
+- NLTK (for BLEU score)  
+- Requests (for image fetching)
 
-1. Open the Jupyter Notebook and follow the code cells to execute the steps.
-2. Ensure any necessary data files or models are accessible in the specified paths.
+---
+
+## 📈 Results
+
+| Metric                | Value        |
+|----------------------|--------------|
+| Exact Match Accuracy | 64.78%       |
+| Average BLEU Score   | 0.2549       |
+
+The model demonstrated high precision in entity prediction, especially for short and clear text spans. BLEU scores varied with sequence length and complexity.
+
+---
+
+## 💡 Insights
+
+- **Strengths**: PaddleOCR proved highly effective in text extraction, and the fine-tuned BART model achieved strong alignment with ground truth in many cases.
+- **Challenges**: Longer sequences reduced accuracy; BLEU scores showed sensitivity to minor text variations.
+
+---
+
 
